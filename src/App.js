@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
 import AttributeClass from './components/AttributeClass';
+import CharacterClass from './components/CharacterClass';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     'Charisma': 0
   });
 
-  // Map all attributes to the AttributeClass and display them. Pass in the
+  // Map all attributes to the AttributeClass. Pass in the
   // name of the attribute, the values of each attribute, and the setter
   // function as props.
   const allAttributes = ATTRIBUTE_LIST.map(attribute => {
@@ -23,6 +24,18 @@ function App() {
         name={attribute}
         nums={nums}
         handleNums={setNums}
+      />
+    )
+  })
+  
+  // Map the characters to CharacterClass. Pass in the name of the character
+  // and the values of each attribute as props.
+  const characterKeys = Object.keys(CLASS_LIST)
+  const allCharacters = characterKeys.map(character => {
+    return (
+      <CharacterClass 
+        name={character}
+        nums={nums}
       />
     )
   })
@@ -36,6 +49,10 @@ function App() {
         <div className="attributes-section">
           <h3> Attributes </h3>
           {allAttributes}
+        </div>
+        <div className="characters-section">
+          <h3> Characters </h3>
+          {allCharacters}
         </div>
       </section>
     </div>
