@@ -30,10 +30,37 @@
   flex: 1 1 0;
   background-color: hsl(220deg 13% 13%);
   color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.App-section > div {
+  border: 2px solid white;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.attributes-section, .characters-section, .skills-section {
+  padding: 10px;
+}
+
+h3 {
+  color: #a050de;
+}
+
+button {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.hidden-button {
+  margin-top: 10px;
 }
 
 @keyframes App-logo-spin {

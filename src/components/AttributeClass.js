@@ -1,11 +1,28 @@
 import React from "react"
 
 export default function AttributeClass(props) {
+    function checkMaximum() {
+        const attributeValues = Object.values(props.nums)
+        var totalAttributes = 0
+        for (let i=0; i < attributeValues.length; i++) {
+            totalAttributes += attributeValues[i]
+        }
+        return totalAttributes
+    }
+
+    var canIncrement = true;
     function increment() {
-        props.handleNums(prevNums => ({
-            ...prevNums,
-            [props.name]: prevNums[props.name] + 1
-        }))
+        if (checkMaximum() === 70) {
+            alert("The total of all attributes is 70. It cannot be higher.")
+            canIncrement = false;
+        }
+
+        if (canIncrement) {
+            props.handleNums(prevNums => ({
+                ...prevNums,
+                [props.name]: prevNums[props.name] + 1
+            }))
+        }
     }
 
     function decrement() {
