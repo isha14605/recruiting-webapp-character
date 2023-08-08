@@ -3,7 +3,7 @@ import './App.css';
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
 import AttributeClass from './components/AttributeClass';
 import CharacterClass from './components/CharacterClass';
-
+import SkillsClass from './components/SkillsClass';
 
 function App() {
   const [nums, setNums] = useState({
@@ -40,6 +40,27 @@ function App() {
     )
   })
 
+  function getModifier(attribute) {
+    return Math.floor((attribute - 10)/2)
+  }
+
+  function totalPoints(attribute) {
+    return 10 + (4 * attribute)
+  }
+
+  // Map all the skills to SkillsClass. Pass in the name of the skill, its attribute modifier,
+  // the value of the modifier based on nums, and the total points available.
+  const allSkills = SKILL_LIST.map(anObject => {
+    return (
+      <SkillsClass 
+        name={anObject.name}
+        attributeModifier={anObject.attributeModifier}
+        modifierValue={getModifier(nums[anObject.attributeModifier])}
+        totalPointsAvailable={totalPoints(nums.Intelligence)}
+      />
+    )
+  })
+
   return (
     <div className="App">
       <header className="App-header">
@@ -53,6 +74,11 @@ function App() {
         <div className="characters-section">
           <h3> Characters </h3>
           {allCharacters}
+        </div>
+        <div className="skills-section">
+          <h3> Skills </h3>
+          <h5> Total Skills Points Available: {totalPoints(nums.Intelligence)}</h5>
+          {allSkills}
         </div>
       </section>
     </div>
